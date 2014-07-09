@@ -65,6 +65,7 @@ public class Promation {
 		System.out.println("ehh:"+cellIterator.next().getStringCellValue());
 		Cell cell=row.getCell(2);
 		System.out.println("KKS:"+cell.getStringCellValue());
+		System.out.println("test");
 	}
 
 }

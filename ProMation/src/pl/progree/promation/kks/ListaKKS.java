@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @author Progree
  *
  */
-public class ListaKKS extends ArrayList<hasKKS> {
+public class ListaKKS<E extends hasKKS> extends ArrayList<E> {
 
 	/**
 	 * 

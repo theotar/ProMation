@@ -1,24 +1,14 @@
 package pl.progree.promation;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
-import pl.progree.promation.kks.hasKKS;
 
 public class Promation {
-	private ListaKKS listaSygnalow=new ListaKKS();
+	private ListaKKS<Sygnal> listaSygnalow=new ListaKKS<Sygnal>();
 	
 	public Promation(){
 		ArrayList<Sygnal> lista=null;
@@ -48,9 +38,10 @@ public class Promation {
 		System.out.println("kks6:"+kks6);
 		
 		Promation promation=new Promation();
-		Iterator<hasKKS> itr=promation.listaSygnalow.iterator();
+		promation.listaSygnalow.sortASC();
+		Iterator<Sygnal> itr=promation.listaSygnalow.iterator();
 		while(itr.hasNext()){
-			((Sygnal)itr.next()).info();
+			itr.next().info();
 		}
 		
 		

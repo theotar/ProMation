@@ -12,9 +12,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
+import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 
 public class Promation {
+	private ListaKKS listaSygnalow;
 
 	public static void main(String[] args) {
 		System.out.println("hello world!");
@@ -56,12 +58,13 @@ public class Promation {
 		 
 		//Get iterator to all the rows in current sheet
 		Iterator<Row> rowIterator = sheet.iterator();
-		Row row=rowIterator.next();
+		Row row=sheet.getRow(7);
 		 
 		//Get iterator to all cells of current row
 		Iterator<Cell> cellIterator = row.cellIterator();
-		while(cellIterator.hasNext())
 		System.out.println("ehh:"+cellIterator.next().getStringCellValue());
+		Cell cell=row.getCell(2);
+		System.out.println("KKS:"+cell.getStringCellValue());
 	}
 
 }

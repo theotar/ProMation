@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -14,9 +15,22 @@ import org.apache.poi.ss.usermodel.Row;
 
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
+import pl.progree.promation.kks.hasKKS;
 
 public class Promation {
-	private ListaKKS listaSygnalow;
+	private ListaKKS listaSygnalow=new ListaKKS();
+	
+	public Promation(){
+		ArrayList<Sygnal> lista=null;
+		try {
+			 lista=ExcelImporter.importujSygnaly("debug", 0, 7, 2, 3, 4);
+			 this.listaSygnalow.addAll(lista);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public static void main(String[] args) {
 		System.out.println("hello world!");
@@ -32,40 +46,14 @@ public class Promation {
 		System.out.println("kks5:"+kks5);
 		StringKKS kks6=new StringKKS("04HLA10AA201","CG01");
 		System.out.println("kks6:"+kks6);
-		Sygnal s1= new Sygnal(kks2);
-		s1.info();
-		System.out.println();
-		URL fileURL=Thread.currentThread().getContextClassLoader().getResource("testData/sygnaly.xls");
-		File file=null;
-//		try {
-//			file = new FileInputStream(new File("..\\testData\\sygnaly.xls"));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-        
-		//Get the workbook instance for XLS file
-		HSSFWorkbook workbook=null;
-		try {
-			workbook = new HSSFWorkbook(Thread.currentThread().getContextClassLoader().getResourceAsStream("testData/sygnaly.xls"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		Promation promation=new Promation();
+		Iterator<hasKKS> itr=promation.listaSygnalow.iterator();
+		while(itr.hasNext()){
+			((Sygnal)itr.next()).info();
 		}
-		 
-		//Get first sheet from the workbook
-		HSSFSheet sheet = workbook.getSheetAt(0);
-		 
-		//Get iterator to all the rows in current sheet
-		Iterator<Row> rowIterator = sheet.iterator();
-		Row row=sheet.getRow(7);
-		 
-		//Get iterator to all cells of current row
-		Iterator<Cell> cellIterator = row.cellIterator();
-		System.out.println("ehh:"+cellIterator.next().getStringCellValue());
-		Cell cell=row.getCell(2);
-		System.out.println("KKS:"+cell.getStringCellValue());
-		System.out.println("test");
+		
+		
 	}
 
 }

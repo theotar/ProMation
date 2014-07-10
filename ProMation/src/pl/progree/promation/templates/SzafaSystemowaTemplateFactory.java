@@ -27,10 +27,10 @@ public abstract class SzafaSystemowaTemplateFactory {
 			sloty.add(String.format("E%02d", i));
 			sloty.add(String.format("G%02d", i));
 		}
-		szablony.add(SzafaSystemowaTemplateFactory.getTemplate("Szafa Melody(4 kasety po 12 slotów)",sloty));
+		szablony.add(SzafaSystemowaTemplateFactory.create("Szafa Melody(4 kasety po 12 slotów)",sloty));
 		return SzafaSystemowaTemplateFactory.defaultTemplates;
 	}
-	public static SzafaSystemowaTemplate getTemplate(String oznaczenie, Collection<String> nazwySlotow){
+	public static SzafaSystemowaTemplate create(String oznaczenie, Collection<String> nazwySlotow){
 		if(oznaczenie == null || oznaczenie.isEmpty()) oznaczenie ="Szablon bez nazwy";
 		SzafaSystemowaTemplate szafa=new SzafaSystemowaTemplate(oznaczenie);
 		if(nazwySlotow != null) szafa.getNazwySlotow().addAll(nazwySlotow);

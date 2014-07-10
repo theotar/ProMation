@@ -1,5 +1,8 @@
 package pl.progree.promation.system;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
@@ -43,14 +46,18 @@ public class SzafaSystemowa implements hasKKS{
 		
 	}
 	private KodKKS kodKKS;
-	private ListaKKS<Slot> listaSlotow=new ListaKKS<SzafaSystemowa.Slot>();
+	private ListaKKS<Slot> listaSlotow=new ListaKKS<Slot>();
 	
-	
+
+
 	public SzafaSystemowa(KodKKS kodKKS) {
 		super();
 		this.kodKKS = kodKKS;
 	}
 
+	public boolean addSlot(String oznaczenie) {
+		return listaSlotow.add(new Slot(oznaczenie));
+	}
 
 	public KodKKS getKodKKS() {
 		return kodKKS;
@@ -61,14 +68,14 @@ public class SzafaSystemowa implements hasKKS{
 		this.kodKKS = kodKKS;
 	}
 
-
+	/**
+	 * 
+	 * @return copy of slot list
+	 */
 	public ListaKKS<Slot> getListaSlotow() {
-		return listaSlotow;
-	}
-
-
-	public void setListaSlotow(ListaKKS<Slot> listaSlotow) {
-		this.listaSlotow = listaSlotow;
+		ListaKKS<Slot> lista=new ListaKKS<Slot>();
+		lista.addAll(this.listaSlotow);
+		return lista;
 	}
 
 
@@ -78,5 +85,12 @@ public class SzafaSystemowa implements hasKKS{
 		return this.getKodKKS();
 	}
 	
+	public void info(){
+		System.out.println("KKS: " +this.getKKS().toString());
+		System.out.print("Sloty:");
+		Iterator<Slot> itr=this.listaSlotow.iterator();
+		while(itr.hasNext()) System.err.print(itr.next().getKKS().toString()+", ");
+		System.out.println();
+	}
 
 }

@@ -39,7 +39,7 @@ public abstract class ExcelImporter {
 		
 		while(!row.getCell(kolumnaRdzenia).getStringCellValue().isEmpty()){
 			System.out.println(row.getCell(kolumnaRdzenia).getStringCellValue());
-			listaSygnalow.add(SygnalFactory.getSygnal(
+			listaSygnalow.add(SygnalFactory.create(
 					row.getCell(kolumnaRdzenia).getStringCellValue(), 
 					row.getCell(kolumnaRozszerzenia).getStringCellValue(),
 					row.getCell(kolumnaOpisu).getStringCellValue()));

@@ -10,7 +10,7 @@ import pl.progree.promation.kks.StringKKS;
  *
  */
 public abstract class SygnalFactory {
-	public static Sygnal getSygnal(String rdzenKKS,String rozszerzenieKKS, String opis){
+	public static Sygnal create(String rdzenKKS,String rozszerzenieKKS, String opis){
 		if(rdzenKKS == null || rdzenKKS.isEmpty()) return null;
 		if(rozszerzenieKKS !=null && rozszerzenieKKS.isEmpty() ) rozszerzenieKKS=null;
 		if(opis == null) opis="";

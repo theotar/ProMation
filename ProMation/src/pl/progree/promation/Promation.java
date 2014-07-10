@@ -2,17 +2,40 @@ package pl.progree.promation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
+import pl.progree.promation.system.SzafaSystemowa;
+import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
 import pl.progree.promation.templates.SzafaSystemowaTemplateFactory;
 
 public class Promation {
+	private Collection<SzafaSystemowaTemplate> szablonySzafSystemowych=new ArrayList<SzafaSystemowaTemplate>();
 	private ListaKKS<Sygnal> listaSygnalow=new ListaKKS<Sygnal>();
+	private ListaKKS<SzafaSystemowa> listaSzafSystemowych=new ListaKKS<SzafaSystemowa>();
 	
 	public Promation(){
+		this.prepareTemplates();
+		this.loadTestData();
+	}
+	public void prepareTemplates(){
+		this.szablonySzafSystemowych=new ArrayList<SzafaSystemowaTemplate>();
+		this.szablonySzafSystemowych.addAll(SzafaSystemowaTemplateFactory.getDefaultTemplates());
+	}
+	public void loadSzafySystemowe(){
+		SzafaSystemowaTemplate szafaMelody=this.szablonySzafSystemowych.iterator().next();
+		for(int i=1;i<4;i++) 
+			this.listaSzafSystemowych.add(SzafaSystemowaFactory.create(new StringKKS(String.format("04CDA%02d", i)), szafaMelody));
+		for(int i=10;i<14;i++) 
+			this.listaSzafSystemowych.add(SzafaSystemowaFactory.create(new StringKKS(String.format("04CDA%02d", i)), szafaMelody));
+		for(int i=20;i<24;i++) 
+			this.listaSzafSystemowych.add(SzafaSystemowaFactory.create(new StringKKS(String.format("04CDA%02d", i)), szafaMelody));
+	}
+	public void loadTestData(){
+		this.loadSzafySystemowe();
 		ArrayList<Sygnal> lista=null;
 		try {
 			 lista=ExcelImporter.importujSygnaly("debug", 0, 7, 2, 3, 4);
@@ -21,7 +44,6 @@ public class Promation {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	public static void main(String[] args) {
@@ -45,15 +67,7 @@ public class Promation {
 //		while(itr.hasNext()){
 //			itr.next().info();
 //		}
-		SzafaSystemowaTemplate template=new SzafaSystemowaTemplate("Szafa Melody(4 kasety po 12 slotów)");
-		template.getNazwySlotow().add("A01");
-		template.getNazwySlotow().add("C01");
-		template.getNazwySlotow().add("E01");
-		template.getNazwySlotow().add("G01");
-		template.getNazwySlotow().add("A03");
-		template.info();
-		
-		SzafaSystemowaTemplateFactory.getDefaultTemplates();
+		promation.listaSzafSystemowych.iterator().next().info();
 		
 		
 	}

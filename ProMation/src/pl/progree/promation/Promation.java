@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import pl.progree.promation.debug.Tester;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
@@ -25,6 +26,28 @@ public class Promation {
 	public void prepareTemplates(){
 		this.szablonySzafSystemowych=new ArrayList<SzafaSystemowaTemplate>();
 		this.szablonySzafSystemowych.addAll(SzafaSystemowaTemplateFactory.getDefaultTemplates());
+	}
+	
+	
+	public Collection<SzafaSystemowaTemplate> getSzablonySzafSystemowych() {
+		return szablonySzafSystemowych;
+	}
+	public void setSzablonySzafSystemowych(
+			Collection<SzafaSystemowaTemplate> szablonySzafSystemowych) {
+		this.szablonySzafSystemowych = szablonySzafSystemowych;
+	}
+	public ListaKKS<Sygnal> getListaSygnalow() {
+		return listaSygnalow;
+	}
+	public void setListaSygnalow(ListaKKS<Sygnal> listaSygnalow) {
+		this.listaSygnalow = listaSygnalow;
+	}
+	public ListaKKS<SzafaSystemowa> getListaSzafSystemowych() {
+		return listaSzafSystemowych;
+	}
+	public void setListaSzafSystemowych(
+			ListaKKS<SzafaSystemowa> listaSzafSystemowych) {
+		this.listaSzafSystemowych = listaSzafSystemowych;
 	}
 	public void loadSzafySystemowe(){
 		SzafaSystemowaTemplate szafaMelody=this.szablonySzafSystemowych.iterator().next();
@@ -48,19 +71,7 @@ public class Promation {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("hello world!");
-		StringKKS kks1=new StringKKS("04HLA10AA201");
-		System.out.println("kks1:"+kks1);
-		StringKKS kks2=new StringKKS("04HLA10AA201","CG01");
-		System.out.println("kks2:"+kks2);
-		StringKKS kks3=new StringKKS("04HLA10AA201","CG02");
-		System.out.println("kks3:"+kks3);
-		StringKKS kks4=new StringKKS(null,"CG02");
-		System.out.println("kks4:"+kks4);
-		StringKKS kks5=new StringKKS("04HLA10AA201");
-		System.out.println("kks5:"+kks5);
-		StringKKS kks6=new StringKKS("04HLA10AA201","CG01");
-		System.out.println("kks6:"+kks6);
+		
 		
 		Promation promation=new Promation();
 		promation.listaSygnalow.sortASC();
@@ -68,12 +79,9 @@ public class Promation {
 //		while(itr.hasNext()){
 //			itr.next().info();
 //		}
-		SzafaSystemowa szafa=promation.listaSzafSystemowych.iterator().next();
-		System.out.println(szafa.getListaSlotow().iterator().next().getPelnyKodKKS());
-		szafa.getListaSlotow().iterator().next().setZaalokowanyModul(new Modul(32));
-		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().info();
-		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().setMiejsceAlokacji(szafa.getListaSlotow().iterator().next());
-		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().info();
+		Tester test=new Tester();
+		test.start();
+		
 		
 		
 		

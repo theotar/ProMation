@@ -9,7 +9,7 @@ import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.kks.hasKKS;
 
 public class SzafaSystemowa implements hasKKS{
-	protected class Slot implements hasKKS{
+	public class Slot implements hasKKS{
 		private KodKKS pelnyKodKKS=new KodKKS(){
 
 			@Override
@@ -22,6 +22,7 @@ public class SzafaSystemowa implements hasKKS{
 			}	
 		};
 		private KodKKS kodKKS;
+		private Modul zaalokowanyModul;
 		
 		protected Slot(String kksSlotu){
 			this.kodKKS=new StringKKS(kksSlotu);
@@ -38,6 +39,13 @@ public class SzafaSystemowa implements hasKKS{
 		}
 		public void setPelnyKodKKS(KodKKS pelnyKodKKS) {
 			this.pelnyKodKKS = pelnyKodKKS;
+		}
+		
+		public Modul getZaalokowanyModul() {
+			return zaalokowanyModul;
+		}
+		public void setZaalokowanyModul(Modul zaalokowanyModul) {
+			this.zaalokowanyModul = zaalokowanyModul;
 		}
 		@Override
 		public KodKKS getKKS() {		

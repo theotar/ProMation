@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
+import pl.progree.promation.system.Modul;
 import pl.progree.promation.system.SzafaSystemowa;
 import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
@@ -67,7 +68,13 @@ public class Promation {
 //		while(itr.hasNext()){
 //			itr.next().info();
 //		}
-		promation.listaSzafSystemowych.iterator().next().info();
+		SzafaSystemowa szafa=promation.listaSzafSystemowych.iterator().next();
+		System.out.println(szafa.getListaSlotow().iterator().next().getPelnyKodKKS());
+		szafa.getListaSlotow().iterator().next().setZaalokowanyModul(new Modul(32));
+		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().info();
+		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().setMiejsceAlokacji(szafa.getListaSlotow().iterator().next());
+		szafa.getListaSlotow().iterator().next().getZaalokowanyModul().info();
+		
 		
 		
 	}

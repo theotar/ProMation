@@ -6,6 +6,8 @@ import java.util.Iterator;
 
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
+import pl.progree.promation.templates.SzafaSystemowaTemplate;
+import pl.progree.promation.templates.SzafaSystemowaTemplateFactory;
 
 public class Promation {
 	private ListaKKS<Sygnal> listaSygnalow=new ListaKKS<Sygnal>();
@@ -39,10 +41,19 @@ public class Promation {
 		
 		Promation promation=new Promation();
 		promation.listaSygnalow.sortASC();
-		Iterator<Sygnal> itr=promation.listaSygnalow.iterator();
-		while(itr.hasNext()){
-			itr.next().info();
-		}
+//		Iterator<Sygnal> itr=promation.listaSygnalow.iterator();
+//		while(itr.hasNext()){
+//			itr.next().info();
+//		}
+		SzafaSystemowaTemplate template=new SzafaSystemowaTemplate("Szafa Melody(4 kasety po 12 slotów)");
+		template.getNazwySlotow().add("A01");
+		template.getNazwySlotow().add("C01");
+		template.getNazwySlotow().add("E01");
+		template.getNazwySlotow().add("G01");
+		template.getNazwySlotow().add("A03");
+		template.info();
+		
+		SzafaSystemowaTemplateFactory.getDefaultTemplates();
 		
 		
 	}

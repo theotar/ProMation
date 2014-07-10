@@ -1,4 +1,4 @@
-package pl.progree.promation;
+package pl.progree.promation.system;
 
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.ListaKKS;

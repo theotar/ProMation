@@ -69,6 +69,9 @@ public class Promation {
 			e.printStackTrace();
 		}
 	}
+	public boolean addSzafaSystemowa(SzafaSystemowa szafa){
+		return this.listaSzafSystemowych.add(szafa);
+	}
 
 	public static void main(String[] args) {
 		

@@ -13,7 +13,10 @@ public class SzafaSystemowaTemplate {
 		this.oznaczenie = oznaczenie;
 		this.nazwySlotow=new TreeSet<String>();
 	}
-
+	@Override
+	public String toString() {
+		return this.oznaczenie;
+	}
 	public String getOznaczenie() {
 		return oznaczenie;
 	}

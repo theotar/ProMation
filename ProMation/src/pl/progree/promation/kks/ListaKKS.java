@@ -27,7 +27,12 @@ public class ListaKKS<E extends hasKKS> extends ArrayList<E> {
 	public void sortASC(){
 		this.sort(this.komparatorAZ);
 	}
-	
+	public E find(String KKS){
+		for (E element : this) {
+			if(element.getKKS().toString().equals(KKS)) return element;
+		}
+		return null;
+	}
 	
 
 }

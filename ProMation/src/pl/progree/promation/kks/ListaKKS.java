@@ -5,13 +5,16 @@ package pl.progree.promation.kks;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author Progree
  *
  */
 public class ListaKKS<E extends hasKKS> extends ArrayList<E> {
-
+	public static abstract class Selector<T>{
+		public abstract boolean Select(T obiektDoPorownania);	
+	}
 	/**
 	 * 
 	 */
@@ -32,6 +35,14 @@ public class ListaKKS<E extends hasKKS> extends ArrayList<E> {
 			if(element.getKKS().toString().equals(KKS)) return element;
 		}
 		return null;
+	}
+	
+	public ListaKKS<E> subList(Selector<E> selector) {
+		ListaKKS<E> lista=new ListaKKS<E>();
+		for (E e : this) {
+			if(selector.Select(e)) lista.add(e);
+		}
+		return lista;
 	}
 	
 

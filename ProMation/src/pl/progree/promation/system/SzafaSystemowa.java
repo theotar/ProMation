@@ -1,6 +1,5 @@
 package pl.progree.promation.system;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import pl.progree.promation.kks.KodKKS;
@@ -51,6 +50,10 @@ public class SzafaSystemowa implements hasKKS{
 		public KodKKS getKKS() {		
 			return this.getKodKKS();
 		}
+		@Override
+		public String toString() {
+			return this.getPelnyKodKKS().toString();
+		}
 		
 	}
 	private KodKKS kodKKS;
@@ -91,6 +94,10 @@ public class SzafaSystemowa implements hasKKS{
 	public KodKKS getKKS() {
 		
 		return this.getKodKKS();
+	}
+	@Override
+	public String toString() {
+		return this.getKKS().toString();
 	}
 	
 	public void info(){

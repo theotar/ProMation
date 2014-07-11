@@ -10,6 +10,7 @@ import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
 import pl.progree.promation.system.SzafaSystemowa;
+import pl.progree.promation.system.SzafaSystemowa.Slot;
 import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
 import pl.progree.promation.templates.SzafaSystemowaTemplateFactory;
@@ -78,6 +79,16 @@ public class Promation {
 	}
 	public boolean addSzafaSystemowa(SzafaSystemowa szafa){
 		return this.listaSzafSystemowych.add(szafa);
+	}
+	public boolean addModul(Modul modul){
+		return this.listaModulow.add(modul);
+	}
+	public boolean alokujModul(Modul modul,Slot slot){
+		if(modul.getMiejsceAlokacji()!=null) return false;
+		if(slot.getZaalokowanyModul()!=null) return false;
+		modul.setMiejsceAlokacji(slot);
+		slot.setZaalokowanyModul(modul);
+		return true;
 	}
 
 	public static void main(String[] args) {

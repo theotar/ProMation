@@ -11,8 +11,11 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import pl.progree.promation.Promation;
+import pl.progree.promation.kks.KodKKS;
+import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.SzafaSystemowa;
+import pl.progree.promation.system.SzafaSystemowa.Slot;
 import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
 import pl.progree.promation.templates.SzafaSystemowaTemplateFactory;
@@ -47,6 +50,7 @@ public class Tester {
 		menu.add("Szablony szaf systemowych");
 		menu.add("Lista szaf systemowych");
 		menu.add("Dodaj szafê systemow¹");
+		menu.add("Poka¿ szczegó³y szafy");
 		int wybor=0;
 		do{
 			wybor=menu.indexOf(JOptionPane.showInputDialog(null,"Wybierz akcje","MENU SZAF SYSTEMOWYCH",
@@ -56,6 +60,8 @@ public class Tester {
 				case 1:this.showSzablonySzafSystemowych();break;
 				case 2:this.showSzafySystemowe();break;
 				case 3:this.dodajSzafeSystemowa();break;
+				case 4:this.showSzafeSystemowa();break;
+				
 			}
 		}while(wybor>0);
 	}
@@ -100,6 +106,20 @@ public class Tester {
 		
 		
 	}
+	public void showSzafeSystemowa(){
+		SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
+		KodKKS kks;
+		if(szafa!=null){
+			String str="Szafa: "+szafa.getKKS().toString()+"\n";
+			ListaKKS<Slot> sloty=szafa.getListaSlotow();
+			for (Slot slot : sloty) {
+				str+=slot.getKKS().toString()+" ";
+				if(slot.getZaalokowanyModul()==null) str+="PUSTY\n";
+				else str+=slot.getZaalokowanyModul().getNazwa()+"\n";
+			}
+			JOptionPane.showMessageDialog(null, str);
+		}
+	}
 	public SzafaSystemowaTemplate wybierzSzablonSzafySystemowej(){
 		Object[] szablony=pro.getSzablonySzafSystemowych().toArray();
 		Object wybor;
@@ -107,6 +127,14 @@ public class Tester {
 			JOptionPane.QUESTION_MESSAGE,null,
 			szablony,szablony[0]);
 		return (SzafaSystemowaTemplate) wybor;
+	}
+	public SzafaSystemowa wybierzSzafeSystemowa(){
+		Object[] szafy=pro.getListaSzafSystemowych().toArray();
+		Object wybor;
+		wybor=JOptionPane.showInputDialog(null,"Wybierz szafê systemow¹","WYBÓR SZAFY SYSTEMOWEJ",
+			JOptionPane.QUESTION_MESSAGE,null,
+			szafy,szafy[0]);
+		return (SzafaSystemowa) wybor;
 	}
 	 
 }

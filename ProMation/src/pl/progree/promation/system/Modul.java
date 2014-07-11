@@ -6,9 +6,11 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import pl.progree.promation.kks.KodKKS;
+import pl.progree.promation.kks.hasKKS;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
 
-public class Modul {
+public class Modul implements hasKKS{
 	public class Kanal implements Comparable<Kanal>{
 		private String oznaczenie;
 
@@ -37,6 +39,7 @@ public class Modul {
 	}
 	private Slot miejsceAlokacji=null;
 	private Collection<Kanal> listaKanalow;
+	private String nazwa;
 	
 	public Modul(){
 		this.listaKanalow=new TreeSet<Modul.Kanal>();
@@ -65,12 +68,29 @@ public class Modul {
 	public void setListaKanalow(Collection<Kanal> listaKanalow) {
 		this.listaKanalow = listaKanalow;
 	}
+	/**
+	 * @return the nazwa
+	 */
+	public String getNazwa() {
+		return nazwa;
+	}
+	/**
+	 * @param nazwa the nazwa to set
+	 */
+	public void setNazwa(String nazwa) {
+		this.nazwa = nazwa;
+	}
 	public void info(){
 		System.out.println("Miejsce Alokacji: " + (this.getMiejsceAlokacji() == null ? "Niezaalokowany": this.getMiejsceAlokacji().getPelnyKodKKS()));
 		System.out.print("Kanaly:");
 		Iterator<Kanal> itr=this.listaKanalow.iterator();
 		while(itr.hasNext()) System.err.print(itr.next().getOznaczenie()+", ");
 		System.out.println();
+	}
+	@Override
+	public KodKKS getKKS() {
+		if(this.getMiejsceAlokacji()==null) return KodKKS.BRAK;
+		else return this.getMiejsceAlokacji().getPelnyKodKKS();
 	}
 	
 }

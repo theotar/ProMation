@@ -8,6 +8,7 @@ package pl.progree.promation.kks;
  *
  */
 public abstract class KodKKS {
+	public static final KodKKS BRAK=new StringKKS("BRAK");
 	public abstract Object getRdzen();
 	public abstract Object getRozszerzenie();
 	

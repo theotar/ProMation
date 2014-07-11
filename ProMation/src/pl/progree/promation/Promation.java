@@ -18,6 +18,7 @@ public class Promation {
 	private Collection<SzafaSystemowaTemplate> szablonySzafSystemowych=new ArrayList<SzafaSystemowaTemplate>();
 	private ListaKKS<Sygnal> listaSygnalow=new ListaKKS<Sygnal>();
 	private ListaKKS<SzafaSystemowa> listaSzafSystemowych=new ListaKKS<SzafaSystemowa>();
+	private ListaKKS<Modul> listaModulow=new ListaKKS<Modul>();
 	
 	public Promation(){
 		this.prepareTemplates();
@@ -48,6 +49,12 @@ public class Promation {
 	public void setListaSzafSystemowych(
 			ListaKKS<SzafaSystemowa> listaSzafSystemowych) {
 		this.listaSzafSystemowych = listaSzafSystemowych;
+	}
+	public ListaKKS<Modul> getListaModulow() {
+		return listaModulow;
+	}
+	public void setListaModulow(ListaKKS<Modul> listaModulow) {
+		this.listaModulow = listaModulow;
 	}
 	public void loadSzafySystemowe(){
 		SzafaSystemowaTemplate szafaMelody=this.szablonySzafSystemowych.iterator().next();

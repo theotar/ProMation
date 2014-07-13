@@ -5,6 +5,7 @@ package pl.progree.promation;
 
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
+import pl.progree.promation.system.Modul.Kanal;
 
 /**
  * @author Progree
@@ -13,6 +14,7 @@ import pl.progree.promation.kks.hasKKS;
 public class Sygnal implements hasKKS{
 	private KodKKS kodKKS;
 	private String opis;
+	private Kanal miejsceAlokacji;
 
 	public Sygnal(KodKKS kodKKS) {
 		super();
@@ -34,6 +36,14 @@ public class Sygnal implements hasKKS{
 
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+	
+	public Kanal getMiejsceAlokacji() {
+		return miejsceAlokacji;
+	}
+
+	public void setMiejsceAlokacji(Kanal miejsceAlokacji) {
+		this.miejsceAlokacji = miejsceAlokacji;
 	}
 
 	public void info(){

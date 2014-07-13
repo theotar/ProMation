@@ -9,6 +9,7 @@ import java.util.Collection;
 import javax.swing.JOptionPane;
 
 import pl.progree.promation.Promation;
+import pl.progree.promation.Sygnal;
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.ListaKKS.Selector;
@@ -95,6 +96,7 @@ public class Tester {
 		menu.add("Zakoñcz");
 		menu.add("Szafy systemowe");
 		menu.add("Modu³y");
+		menu.add("Sygna³y");
 		int wybor=0;
 		do{
 			wybor=menu.indexOf(JOptionPane.showInputDialog(null,"Wybierz akcje","MENU",
@@ -103,6 +105,7 @@ public class Tester {
 			switch(wybor){
 				case 1:this.showMenuSzafSystemowych();break;
 				case 2:this.showMenuModulow();break;
+				case 3:this.showMenuSygnalow();break;
 			}
 		}while(wybor>0);
 	}
@@ -136,13 +139,34 @@ public class Tester {
 		menu.add("Alokuj modu³");
 		int wybor=0;
 		do{
-			wybor=menu.indexOf(JOptionPane.showInputDialog(null,"Wybierz akcje","MENU SZAF SYSTEMOWYCH",
+			wybor=menu.indexOf(JOptionPane.showInputDialog(null,"Wybierz akcje","MENU MODU£ÓW",
 				JOptionPane.QUESTION_MESSAGE,null,
 				menu.toArray(),menu.get(0)));
 			switch(wybor){
 				case 1:this.showModuly();break;
 				case 2:this.dodajModul();break;
 				case 3:this.showModul();break;
+				case 4:this.alokujModul();break;
+				
+			}
+		}while(wybor>0);
+	}
+	public void showMenuSygnalow(){
+		ArrayList<String> menu=new ArrayList<String>();
+		menu.add("Powrót");
+		menu.add("Lista sygna³ów");
+		menu.add("Dodaj sygna³");
+		menu.add("Poka¿ szczegó³y sygna³u");
+		menu.add("Alokuj sygna³");
+		int wybor=0;
+		do{
+			wybor=menu.indexOf(JOptionPane.showInputDialog(null,"Wybierz akcje","MENU SYGNA£ÓW",
+				JOptionPane.QUESTION_MESSAGE,null,
+				menu.toArray(),menu.get(0)));
+			switch(wybor){
+				case 1:this.showSygnaly();break;
+				case 2:this.dodajSygnal();break;
+				case 3:this.showSygnal();break;
 				case 4:this.alokujModul();break;
 				
 			}
@@ -180,6 +204,18 @@ public class Tester {
 		String str="";
 		for (Modul modul : moduly) {
 			str+=String.format(formatStr, i++,modul.getTyp());
+		}
+		JOptionPane.showMessageDialog(null, str);
+		System.out.println(str);
+	}
+	public void showSygnaly(){
+		
+		String formatStr="%3d | %20s | %30s | %8s | %2s \n";
+		Collection<Sygnal> sygnaly=pro.getListaSygnalow();
+		int i=1;
+		String str=String.format(formatStr.replace('d', 's'), "LP.","KKS","OPIS","MODUL","K");
+		for (Sygnal sygnal: sygnaly) {
+			str+=String.format(formatStr, i++,sygnal.getKKS().toString(),sygnal.getOpis(),"","");
 		}
 		JOptionPane.showMessageDialog(null, str);
 		System.out.println(str);
@@ -222,9 +258,22 @@ public class Tester {
 		}while(!ok);
 		Modul modul=new Modul(typ, iloscKanalow);
 		if(pro.addModul(modul))JOptionPane.showMessageDialog(null, "Dodano modu³ " + modul.getTyp());
+			
+	}
+	public void dodajSygnal(){
+		boolean ok=true;
+		String kks;
+		do{
+			kks=JOptionPane.showInputDialog("Podaj kks sygna³u");
+			kks=kks.trim();
+			ok=!kks.isEmpty();
+			if(!ok) if(JOptionPane.showConfirmDialog(null, "kks nie mo¿e byæ pusty.\n"
+					+ "Czy chcesz spróbowaæ jeszcze raz?")!=JOptionPane.YES_OPTION) return;
+		}while(!ok);
 		
-		
-		
+		Sygnal sygnal=new Sygnal(new StringKKS(kks.substring(0, 12), kks.substring(13)));
+		if(pro.addSygnal(sygnal))JOptionPane.showMessageDialog(null, "Dodano sygnal " + sygnal.getKKS().toString());
+			
 	}
 	public void showSzafeSystemowa(){
 		SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
@@ -244,6 +293,23 @@ public class Tester {
 		Modul modul=this.wybierzModul();
 		if(modul!=null){
 			String str=String.format("Typ: %s\nMiejsce alokacji:%s", modul.getTyp(),modul.getKKS().toString());
+			JOptionPane.showMessageDialog(null, str);
+		}
+	}
+	public void showSygnal(){
+		Sygnal sygnal=this.wybierzSygnal();
+		if(sygnal!=null){
+			String modul;
+			String kanal;
+			if(sygnal.getMiejsceAlokacji()!=null){
+				modul=sygnal.getMiejsceAlokacji().getModul().getKKS().toString();
+				kanal=sygnal.getMiejsceAlokacji().getOznaczenie();
+			}
+			else{
+				modul="N/A";
+				kanal="-";
+			}
+			String str=String.format("KKS: %s\nModu³:%s\nKana³:%s",sygnal.getKKS().toString(),modul,kanal);
 			JOptionPane.showMessageDialog(null, str);
 		}
 	}
@@ -298,6 +364,14 @@ public class Tester {
 			JOptionPane.QUESTION_MESSAGE,null,
 			moduly,moduly[0]);
 		return (Modul) wybor;
+	}
+	public Sygnal wybierzSygnal(){
+		Object[] sygnaly=pro.getListaSygnalow().toArray();
+		Object wybor;
+		wybor=JOptionPane.showInputDialog(null,"Wybierz sygna³","WYBÓR SYGNA£U",
+			JOptionPane.QUESTION_MESSAGE,null,
+			sygnaly,sygnaly[0]);
+		return (Sygnal) wybor;
 	}
 	public void alokujModul(){
 		Modul modul=this.wybierzModulNiezaalokowany();

@@ -83,6 +83,9 @@ public class Promation {
 	public boolean addModul(Modul modul){
 		return this.listaModulow.add(modul);
 	}
+	public boolean addSygnal(Sygnal sygnal){
+		return this.listaSygnalow.add(sygnal);
+	}
 	public boolean alokujModul(Modul modul,Slot slot){
 		if(modul.getMiejsceAlokacji()!=null) return false;
 		if(slot.getZaalokowanyModul()!=null) return false;

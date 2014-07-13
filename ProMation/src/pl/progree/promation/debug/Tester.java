@@ -9,12 +9,12 @@ import java.util.Collection;
 import javax.swing.JOptionPane;
 
 import pl.progree.promation.Promation;
-import pl.progree.promation.Sygnal;
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.ListaKKS.Selector;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
+import pl.progree.promation.system.Sygnal;
 import pl.progree.promation.system.SzafaSystemowa;
 import pl.progree.promation.system.Modul.Kanal;
 import pl.progree.promation.system.SzafaSystemowa.Slot;

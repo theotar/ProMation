@@ -1,11 +1,10 @@
 /**
  * 
  */
-package pl.progree.promation;
+package pl.progree.promation.system;
 
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
-import pl.progree.promation.system.AlokowalnyWModule;
 import pl.progree.promation.system.Modul.Kanal;
 
 /**
@@ -16,7 +15,9 @@ public class Sygnal implements hasKKS,AlokowalnyWModule{
 	private KodKKS kodKKS;
 	private String opis;
 	private Kanal miejsceAlokacji;
-
+	protected Sygnal(){
+		
+	}
 	public Sygnal(KodKKS kodKKS) {
 		super();
 		this.kodKKS = kodKKS;

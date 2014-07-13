@@ -11,6 +11,9 @@ public class StringKKS extends KodKKS{
 	private String rdzen;
 	private String rozszerzenie;
 	
+	protected StringKKS(){
+		
+	}
 	public StringKKS(String rdzen) {
 		super();
 		this.rdzen = rdzen;

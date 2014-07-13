@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import pl.progree.promation.Sygnal;
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
 import pl.progree.promation.system.SzafaSystemowa.Slot;

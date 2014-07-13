@@ -13,6 +13,9 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
+import pl.progree.promation.system.Sygnal;
+import pl.progree.promation.system.SygnalFactory;
+
 /**
  * @author Wojciech Pierzchalski, Progree
  *

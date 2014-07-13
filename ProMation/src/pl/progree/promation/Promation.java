@@ -9,6 +9,7 @@ import pl.progree.promation.debug.Tester;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
+import pl.progree.promation.system.Sygnal;
 import pl.progree.promation.system.Modul.Kanal;
 import pl.progree.promation.system.SzafaSystemowa;
 import pl.progree.promation.system.SzafaSystemowa.Slot;

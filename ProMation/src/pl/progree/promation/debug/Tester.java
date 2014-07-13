@@ -3,10 +3,8 @@
  */
 package pl.progree.promation.debug;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -20,7 +18,6 @@ import pl.progree.promation.system.SzafaSystemowa;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
 import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
-import pl.progree.promation.templates.SzafaSystemowaTemplateFactory;
 
 /**
  * @author Progree
@@ -34,17 +31,64 @@ public class Tester {
 		this.showMenu();
 	}
 	public void loadModuly(){
-		pro.addModul(new Modul("CBI20", 32));
-		pro.addModul(new Modul("CBO10", 16));
-		pro.addModul(new Modul("CAI20", 32));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CBC11", 20));
-		pro.addModul(new Modul("CAC10", 4));
-		pro.addModul(new Modul("CAC10", 4));
+		SzafaSystemowa cda10=pro.getListaSzafSystemowych().find("04CDA10");
+		SzafaSystemowa cda11=pro.getListaSzafSystemowych().find("04CDA11");
+		
+		Modul modul=new Modul("CBI20", 32);
+		Slot slot=cda10.getListaSlotow().find("A07");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBO10", 16);
+		slot=cda10.getListaSlotow().find("A08");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CAI20", 32);
+		slot=cda10.getListaSlotow().find("C08");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda10.getListaSlotow().find("E04");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda10.getListaSlotow().find("E05");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda10.getListaSlotow().find("E08");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CAC10", 4);
+		slot=cda10.getListaSlotow().find("G05");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CAC10", 4);
+		slot=cda10.getListaSlotow().find("G09");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda11.getListaSlotow().find("E10");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda11.getListaSlotow().find("E11");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
+		modul=new Modul("CBC11", 20);
+		slot=cda11.getListaSlotow().find("E12");
+		pro.addModul(modul);
+		pro.alokujModul(modul, slot);
+		
 	}
 	public void showMenu(){
 		ArrayList<String> menu=new ArrayList<String>();

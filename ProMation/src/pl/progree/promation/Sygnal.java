@@ -5,13 +5,14 @@ package pl.progree.promation;
 
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
+import pl.progree.promation.system.AlokowalnyWModule;
 import pl.progree.promation.system.Modul.Kanal;
 
 /**
  * @author Progree
  *
  */
-public class Sygnal implements hasKKS{
+public class Sygnal implements hasKKS,AlokowalnyWModule{
 	private KodKKS kodKKS;
 	private String opis;
 	private Kanal miejsceAlokacji;
@@ -54,5 +55,9 @@ public class Sygnal implements hasKKS{
 	@Override
 	public KodKKS getKKS() {
 		return this.getKodKKS();
+	}
+	@Override
+	public String toString() {
+		return this.getKKS().toString();
 	}
 }

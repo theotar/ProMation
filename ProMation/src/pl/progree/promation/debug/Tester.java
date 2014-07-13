@@ -16,6 +16,7 @@ import pl.progree.promation.kks.ListaKKS.Selector;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
 import pl.progree.promation.system.SzafaSystemowa;
+import pl.progree.promation.system.Modul.Kanal;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
 import pl.progree.promation.system.SzafaSystemowaFactory;
 import pl.progree.promation.templates.SzafaSystemowaTemplate;
@@ -167,7 +168,7 @@ public class Tester {
 				case 1:this.showSygnaly();break;
 				case 2:this.dodajSygnal();break;
 				case 3:this.showSygnal();break;
-				case 4:this.alokujModul();break;
+				case 4:this.alokujSygnal();break;
 				
 			}
 		}while(wybor>0);
@@ -214,8 +215,17 @@ public class Tester {
 		Collection<Sygnal> sygnaly=pro.getListaSygnalow();
 		int i=1;
 		String str=String.format(formatStr.replace('d', 's'), "LP.","KKS","OPIS","MODUL","K");
+		String modul;
+		String kanal;
 		for (Sygnal sygnal: sygnaly) {
-			str+=String.format(formatStr, i++,sygnal.getKKS().toString(),sygnal.getOpis(),"","");
+			if(sygnal.getMiejsceAlokacji()==null){
+				modul="-";
+				kanal="-";
+			}else{
+				modul=sygnal.getMiejsceAlokacji().getModul().getKKS().toString();
+				kanal=sygnal.getMiejsceAlokacji().getOznaczenie();
+			}
+			str+=String.format(formatStr, i++,sygnal.getKKS().toString(),sygnal.getOpis(),modul,kanal);
 		}
 		JOptionPane.showMessageDialog(null, str);
 		System.out.println(str);
@@ -365,8 +375,43 @@ public class Tester {
 			moduly,moduly[0]);
 		return (Modul) wybor;
 	}
+	public Modul wybierzModulZaalokowany(){
+		Object[] moduly=pro.getListaModulow().subList(new Selector<Modul>() {
+			
+			@Override
+			public boolean Select(Modul obiektDoPorownania) {
+				return obiektDoPorownania.getMiejsceAlokacji()!=null;
+			}
+		}).toArray();
+		Object wybor;
+		wybor=JOptionPane.showInputDialog(null,"Wybierz modu³","WYBÓR MODU£U",
+			JOptionPane.QUESTION_MESSAGE,null,
+			moduly,moduly[0]);
+		return (Modul) wybor;
+	}
 	public Sygnal wybierzSygnal(){
 		Object[] sygnaly=pro.getListaSygnalow().toArray();
+		Object wybor;
+		wybor=JOptionPane.showInputDialog(null,"Wybierz sygna³","WYBÓR SYGNA£U",
+			JOptionPane.QUESTION_MESSAGE,null,
+			sygnaly,sygnaly[0]);
+		return (Sygnal) wybor;
+	}
+	public Kanal wybierzKanalNiezaalokowany(Modul modul){
+		Object[] kanaly=modul.gdzieMoznaZaalokowac(null).toArray();
+		Object wybor;
+		wybor=JOptionPane.showInputDialog(null,"Wybierz kana³","WYBÓR WOLNEGO KANA£U",
+			JOptionPane.QUESTION_MESSAGE,null,
+			kanaly,kanaly[0]);
+		return (Kanal) wybor;
+	}
+	public Sygnal wybierzSygnalNiezaalokowany(){
+		Object[] sygnaly=pro.getListaSygnalow().subList(new Selector<Sygnal>() {	
+			@Override
+			public boolean Select(Sygnal obiektDoPorownania) {
+				return obiektDoPorownania.getMiejsceAlokacji()==null;
+			}
+		}).toArray();
 		Object wybor;
 		wybor=JOptionPane.showInputDialog(null,"Wybierz sygna³","WYBÓR SYGNA£U",
 			JOptionPane.QUESTION_MESSAGE,null,
@@ -381,6 +426,18 @@ public class Tester {
 				Slot slot=this.wybierzWolnySlot(szafa);
 				if(slot!=null){
 					if(pro.alokujModul(modul, slot))JOptionPane.showMessageDialog(null, "Zaalokowano modu³ " + modul.getMiejsceAlokacji().toString());
+				}
+			}
+		}
+	}
+	public void alokujSygnal(){
+		Sygnal sygnal=this.wybierzSygnalNiezaalokowany();
+		if(sygnal!=null){
+			Modul modul=this.wybierzModulZaalokowany();
+			if(modul!=null){
+				Kanal kanal=this.wybierzKanalNiezaalokowany(modul);
+				if(kanal!=null){
+					if(pro.alokujSygnal(sygnal, kanal))JOptionPane.showMessageDialog(null, "Zaalokowano sygnal " + sygnal.getKKS().toString()+"->"+kanal.getModul().getKKS().toString());
 				}
 			}
 		}

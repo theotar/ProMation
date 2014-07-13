@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import pl.progree.promation.Sygnal;
 import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
@@ -12,6 +13,7 @@ import pl.progree.promation.system.SzafaSystemowa.Slot;
 public class Modul implements hasKKS{
 	public class Kanal implements Comparable<Kanal>{
 		private String oznaczenie;
+		private AlokowalnyWModule zaalokowano;
 
 		protected Kanal(String oznaczenie) {
 			super();
@@ -29,10 +31,22 @@ public class Modul implements hasKKS{
 			this.oznaczenie = oznaczenie;
 		}
 
+		public AlokowalnyWModule getZaalokowano() {
+			return zaalokowano;
+		}
+
+		public void setZaalokowano(AlokowalnyWModule zaalokowano) {
+			this.zaalokowano = zaalokowano;
+		}
+
 		@Override
 		public int compareTo(Kanal o) {
 			if(o == null) return 0;
 			return this.getOznaczenie().compareTo(o.getOznaczenie());
+		}
+		@Override
+		public String toString() {
+			return this.getModul().getKKS().toString()+":"+this.getOznaczenie();
 		}
 		
 		
@@ -49,6 +63,13 @@ public class Modul implements hasKKS{
 		this(typ);
 		for(int i=0;i<liczbaKanalow;i++)
 			this.listaKanalow.add(new Kanal(String.valueOf(i+1)));
+	}
+	public Collection<Kanal> gdzieMoznaZaalokowac(Sygnal sygnal){
+		ArrayList<Kanal> wolneKanaly=new ArrayList<Modul.Kanal>();
+		for (Kanal kanal : this.listaKanalow) {
+			if(kanal.getZaalokowano()==null) wolneKanaly.add(kanal);
+		}
+		return wolneKanaly;
 	}
 	
 	public Slot getMiejsceAlokacji() {

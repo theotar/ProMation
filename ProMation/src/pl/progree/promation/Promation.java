@@ -9,6 +9,7 @@ import pl.progree.promation.debug.Tester;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.system.Modul;
+import pl.progree.promation.system.Modul.Kanal;
 import pl.progree.promation.system.SzafaSystemowa;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
 import pl.progree.promation.system.SzafaSystemowaFactory;
@@ -91,6 +92,13 @@ public class Promation {
 		if(slot.getZaalokowanyModul()!=null) return false;
 		modul.setMiejsceAlokacji(slot);
 		slot.setZaalokowanyModul(modul);
+		return true;
+	}
+	public boolean alokujSygnal(Sygnal sygnal,Kanal kanal){
+		if(sygnal.getMiejsceAlokacji()!=null) return false;
+		if(kanal.getZaalokowano()!=null) return false;
+		sygnal.setMiejsceAlokacji(kanal);
+		kanal.setZaalokowano(sygnal);
 		return true;
 	}
 

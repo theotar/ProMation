@@ -8,6 +8,7 @@ import java.util.Iterator;
 import pl.progree.promation.debug.Tester;
 import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
+import pl.progree.promation.projekt.Projekt;
 import pl.progree.promation.system.Modul;
 import pl.progree.promation.system.Sygnal;
 import pl.progree.promation.system.Modul.Kanal;
@@ -22,6 +23,7 @@ public class Promation {
 	private ListaKKS<Sygnal> listaSygnalow=new ListaKKS<Sygnal>();
 	private ListaKKS<SzafaSystemowa> listaSzafSystemowych=new ListaKKS<SzafaSystemowa>();
 	private ListaKKS<Modul> listaModulow=new ListaKKS<Modul>();
+	private ArrayList<Projekt>projekty;
 	
 	public Promation(){
 		this.prepareTemplates();
@@ -58,6 +60,12 @@ public class Promation {
 	}
 	public void setListaModulow(ListaKKS<Modul> listaModulow) {
 		this.listaModulow = listaModulow;
+	}
+	public ArrayList<Projekt> getProjekty() {
+		return projekty;
+	}
+	public void setProjekty(ArrayList<Projekt> projekty) {
+		this.projekty = projekty;
 	}
 	public void loadSzafySystemowe(){
 		SzafaSystemowaTemplate szafaMelody=this.szablonySzafSystemowych.iterator().next();

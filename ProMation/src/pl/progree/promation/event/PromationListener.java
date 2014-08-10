@@ -10,5 +10,8 @@ import java.util.EventListener;
  *
  */
 public interface PromationListener extends EventListener {
+	public void projectAdded(PromationeEvent e);
+	public void szafaSystemowaAdded(PromationeEvent e);
+	public void modulAdded(PromationeEvent e);
 	
 }

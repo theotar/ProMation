@@ -33,63 +33,63 @@ public class Tester {
 		this.showMenu();
 	}
 	public void loadModuly(){
-		SzafaSystemowa cda10=pro.getListaSzafSystemowych().find("04CDA10");
-		SzafaSystemowa cda11=pro.getListaSzafSystemowych().find("04CDA11");
-		
-		Modul modul=new Modul("CBI20", 32);
-		Slot slot=cda10.getListaSlotow().find("A07");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBO10", 16);
-		slot=cda10.getListaSlotow().find("A08");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CAI20", 32);
-		slot=cda10.getListaSlotow().find("C08");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda10.getListaSlotow().find("E04");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda10.getListaSlotow().find("E05");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda10.getListaSlotow().find("E08");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CAC10", 4);
-		slot=cda10.getListaSlotow().find("G05");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CAC10", 4);
-		slot=cda10.getListaSlotow().find("G09");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda11.getListaSlotow().find("E10");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda11.getListaSlotow().find("E11");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
-		
-		modul=new Modul("CBC11", 20);
-		slot=cda11.getListaSlotow().find("E12");
-		pro.addModul(modul);
-		pro.alokujModul(modul, slot);
+////		SzafaSystemowa cda10=pro.getListaSzafSystemowych().find("04CDA10");
+////		SzafaSystemowa cda11=pro.getListaSzafSystemowych().find("04CDA11");
+//		
+//		Modul modul=new Modul("CBI20", 32);
+//		Slot slot=cda10.getListaSlotow().find("A07");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBO10", 16);
+//		slot=cda10.getListaSlotow().find("A08");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CAI20", 32);
+//		slot=cda10.getListaSlotow().find("C08");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda10.getListaSlotow().find("E04");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda10.getListaSlotow().find("E05");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda10.getListaSlotow().find("E08");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CAC10", 4);
+//		slot=cda10.getListaSlotow().find("G05");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CAC10", 4);
+//		slot=cda10.getListaSlotow().find("G09");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda11.getListaSlotow().find("E10");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda11.getListaSlotow().find("E11");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
+//		
+//		modul=new Modul("CBC11", 20);
+//		slot=cda11.getListaSlotow().find("E12");
+//		pro.addModul(modul);
+//		pro.alokujModul(modul, slot);
 		
 	}
 	public void showMenu(){
@@ -187,15 +187,15 @@ public class Tester {
 	}
 	public void showSzafySystemowe(){
 			
-		String formatStr="%3d | %50s \n";
-		Collection<SzafaSystemowa> szafy = pro.getListaSzafSystemowych();
-		int i=1;
-		String str="";
-		for (SzafaSystemowa szafaSystemowa : szafy) {
-			str+=String.format(formatStr, i++,szafaSystemowa.getKodKKS().toString());
-		}
-		JOptionPane.showMessageDialog(null, str);
-		System.out.println(str);
+//		String formatStr="%3d | %50s \n";
+//		Collection<SzafaSystemowa> szafy = pro.getListaSzafSystemowych();
+//		int i=1;
+//		String str="";
+//		for (SzafaSystemowa szafaSystemowa : szafy) {
+//			str+=String.format(formatStr, i++,szafaSystemowa.getKodKKS().toString());
+//		}
+//		JOptionPane.showMessageDialog(null, str);
+//		System.out.println(str);
 	}
 	public void showModuly(){
 		
@@ -231,19 +231,19 @@ public class Tester {
 		System.out.println(str);
 	}
 	public void dodajSzafeSystemowa(){
-		boolean ok=true;
-		String kks;
-		do{
-			kks=JOptionPane.showInputDialog("Podaj KKS szafy");
-			ok=pro.getListaSzafSystemowych().find(kks)==null;
-			if(!ok) if(JOptionPane.showConfirmDialog(null, "Szafa o danym KKSie ju¿ istnie.\n"
-					+ "Czy chcesz spróbowaæ jeszcze raz?")!=JOptionPane.YES_OPTION) return;
-		}while(!ok);
-		SzafaSystemowaTemplate szablon=this.wybierzSzablonSzafySystemowej();
-		if(szablon!=null){
-			SzafaSystemowa szafa=SzafaSystemowaFactory.create(new StringKKS(kks), szablon);
-			if(pro.addSzafaSystemowa(szafa))JOptionPane.showMessageDialog(null, "Dodano szafê " + szafa.getKKS().toString());
-		}
+//		boolean ok=true;
+//		String kks;
+//		do{
+//			kks=JOptionPane.showInputDialog("Podaj KKS szafy");
+//			ok=pro.getListaSzafSystemowych().find(kks)==null;
+//			if(!ok) if(JOptionPane.showConfirmDialog(null, "Szafa o danym KKSie ju¿ istnie.\n"
+//					+ "Czy chcesz spróbowaæ jeszcze raz?")!=JOptionPane.YES_OPTION) return;
+//		}while(!ok);
+//		SzafaSystemowaTemplate szablon=this.wybierzSzablonSzafySystemowej();
+//		if(szablon!=null){
+//			SzafaSystemowa szafa=SzafaSystemowaFactory.create(new StringKKS(kks), szablon);
+//			if(pro.addSzafaSystemowa(szafa))JOptionPane.showMessageDialog(null, "Dodano szafê " + szafa.getKKS().toString());
+//		}
 		
 		
 	}
@@ -267,7 +267,7 @@ public class Tester {
 					+ "Czy chcesz spróbowaæ jeszcze raz?")!=JOptionPane.YES_OPTION) return;
 		}while(!ok);
 		Modul modul=new Modul(typ, iloscKanalow);
-		if(pro.addModul(modul))JOptionPane.showMessageDialog(null, "Dodano modu³ " + modul.getTyp());
+		//if(pro.addModul(modul))JOptionPane.showMessageDialog(null, "Dodano modu³ " + modul.getTyp());
 			
 	}
 	public void dodajSygnal(){
@@ -286,18 +286,18 @@ public class Tester {
 			
 	}
 	public void showSzafeSystemowa(){
-		SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
-		KodKKS kks;
-		if(szafa!=null){
-			String str="Szafa: "+szafa.getKKS().toString()+"\n";
-			ListaKKS<Slot> sloty=szafa.getListaSlotow();
-			for (Slot slot : sloty) {
-				str+=slot.getKKS().toString()+" ";
-				if(slot.getZaalokowanyModul()==null) str+="PUSTY\n";
-				else str+=slot.getZaalokowanyModul().getTyp()+"\n";
-			}
-			JOptionPane.showMessageDialog(null, str);
-		}
+//		SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
+//		KodKKS kks;
+//		if(szafa!=null){
+//			String str="Szafa: "+szafa.getKKS().toString()+"\n";
+//			ListaKKS<Slot> sloty=szafa.getListaSlotow();
+//			for (Slot slot : sloty) {
+//				str+=slot.getKKS().toString()+" ";
+//				if(slot.getZaalokowanyModul()==null) str+="PUSTY\n";
+//				else str+=slot.getZaalokowanyModul().getTyp()+"\n";
+//			}
+//			JOptionPane.showMessageDialog(null, str);
+//		}
 	}
 	public void showModul(){
 		Modul modul=this.wybierzModul();
@@ -331,16 +331,16 @@ public class Tester {
 			szablony,szablony[0]);
 		return (SzafaSystemowaTemplate) wybor;
 	}
-	public SzafaSystemowa wybierzSzafeSystemowa(){
-		Object[] szafy=pro.getListaSzafSystemowych().toArray();
-		Object wybor;
-		wybor=JOptionPane.showInputDialog(null,"Wybierz szafê systemow¹","WYBÓR SZAFY SYSTEMOWEJ",
-			JOptionPane.QUESTION_MESSAGE,null,
-			szafy,szafy[0]);
-		return (SzafaSystemowa) wybor;
-	}
+//	public SzafaSystemowa wybierzSzafeSystemowa(){
+////		Object[] szafy=pro.getListaSzafSystemowych().toArray();
+////		Object wybor;
+////		wybor=JOptionPane.showInputDialog(null,"Wybierz szafê systemow¹","WYBÓR SZAFY SYSTEMOWEJ",
+////			JOptionPane.QUESTION_MESSAGE,null,
+////			szafy,szafy[0]);
+////		return (SzafaSystemowa) wybor;
+//	}
 	public Slot wybierzWolnySlot(SzafaSystemowa szafa){
-		Object[] sloty=szafa.getListaSlotow().subList(new Selector<SzafaSystemowa.Slot>() {
+		Object[] sloty=szafa.getSloty().subList(new Selector<SzafaSystemowa.Slot>() {
 			
 			@Override
 			public boolean Select(Slot obiektDoPorownania) {
@@ -419,16 +419,16 @@ public class Tester {
 		return (Sygnal) wybor;
 	}
 	public void alokujModul(){
-		Modul modul=this.wybierzModulNiezaalokowany();
-		if(modul!=null){
-			SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
-			if(szafa!=null){
-				Slot slot=this.wybierzWolnySlot(szafa);
-				if(slot!=null){
-					if(pro.alokujModul(modul, slot))JOptionPane.showMessageDialog(null, "Zaalokowano modu³ " + modul.getMiejsceAlokacji().toString());
-				}
-			}
-		}
+//		Modul modul=this.wybierzModulNiezaalokowany();
+//		if(modul!=null){
+//			SzafaSystemowa szafa=this.wybierzSzafeSystemowa();
+//			if(szafa!=null){
+//				Slot slot=this.wybierzWolnySlot(szafa);
+//				if(slot!=null){
+//					if(pro.alokujModul(modul, slot))JOptionPane.showMessageDialog(null, "Zaalokowano modu³ " + modul.getMiejsceAlokacji().toString());
+//				}
+//			}
+//		}
 	}
 	public void alokujSygnal(){
 		Sygnal sygnal=this.wybierzSygnalNiezaalokowany();

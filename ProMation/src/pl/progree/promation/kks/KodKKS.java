@@ -3,12 +3,20 @@
  */
 package pl.progree.promation.kks;
 
+import java.io.Serializable;
+
 /**
  * @author Progree
  *
  */
-public abstract class KodKKS {
+public abstract class KodKKS implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public static final KodKKS BRAK=new StringKKS("BRAK");
+	public static final KodKKS NIEZAALOKOWANY=new StringKKS("niezaalokowany");
 	public abstract Object getRdzen();
 	public abstract Object getRozszerzenie();
 	

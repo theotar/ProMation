@@ -1,5 +1,6 @@
 package pl.progree.promation.system;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 import pl.progree.promation.kks.KodKKS;
@@ -7,8 +8,8 @@ import pl.progree.promation.kks.ListaKKS;
 import pl.progree.promation.kks.StringKKS;
 import pl.progree.promation.kks.hasKKS;
 
-public class SzafaSystemowa implements hasKKS{
-	public class Slot implements hasKKS{
+public class SzafaSystemowa implements hasKKS,Serializable{
+	public class Slot implements hasKKS,Serializable{
 		private KodKKS pelnyKodKKS=new KodKKS(){
 
 			@Override
@@ -57,7 +58,7 @@ public class SzafaSystemowa implements hasKKS{
 		
 	}
 	private KodKKS kodKKS;
-	private ListaKKS<Slot> listaSlotow=new ListaKKS<Slot>();
+	private ListaKKS<Slot> sloty=new ListaKKS<Slot>();
 	
 
 
@@ -67,7 +68,7 @@ public class SzafaSystemowa implements hasKKS{
 	}
 
 	public boolean addSlot(String oznaczenie) {
-		return listaSlotow.add(new Slot(oznaczenie));
+		return sloty.add(new Slot(oznaczenie));
 	}
 
 	public KodKKS getKodKKS() {
@@ -83,10 +84,8 @@ public class SzafaSystemowa implements hasKKS{
 	 * 
 	 * @return copy of slot list
 	 */
-	public ListaKKS<Slot> getListaSlotow() {
-		ListaKKS<Slot> lista=new ListaKKS<Slot>();
-		lista.addAll(this.listaSlotow);
-		return lista;
+	public ListaKKS<Slot> getSloty() {
+		return (ListaKKS<Slot>) this.sloty.clone();
 	}
 
 
@@ -103,7 +102,7 @@ public class SzafaSystemowa implements hasKKS{
 	public void info(){
 		System.out.println("KKS: " +this.getKKS().toString());
 		System.out.print("Sloty:");
-		Iterator<Slot> itr=this.listaSlotow.iterator();
+		Iterator<Slot> itr=this.sloty.iterator();
 		while(itr.hasNext()) System.err.print(itr.next().getKKS().toString()+", ");
 		System.out.println();
 	}

@@ -1,5 +1,6 @@
 package pl.progree.promation.system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -9,8 +10,16 @@ import pl.progree.promation.kks.KodKKS;
 import pl.progree.promation.kks.hasKKS;
 import pl.progree.promation.system.SzafaSystemowa.Slot;
 
-public class Modul implements hasKKS{
-	public class Kanal implements Comparable<Kanal>{
+public class Modul implements hasKKS,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public class Kanal implements Comparable<Kanal>,Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private String oznaczenie;
 		private AlokowalnyWModule zaalokowano;
 
@@ -110,7 +119,7 @@ public class Modul implements hasKKS{
 	}
 	@Override
 	public KodKKS getKKS() {
-		if(this.getMiejsceAlokacji()==null) return KodKKS.BRAK;
+		if(this.getMiejsceAlokacji()==null) return KodKKS.NIEZAALOKOWANY;
 		else return this.getMiejsceAlokacji().getPelnyKodKKS();
 	}
 	@Override
